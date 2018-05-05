@@ -10,16 +10,18 @@ class Field{
 
 vector<vector <int> > matr_;
 int domain_;
-int w_locw;
-int w_loch;
+
 
 public:
   Field();
+  Field(const & Field f);
   int size();
   vector<int> &operator [](int i);
   void move(int nr);
   bool check_solution();
-
+  int w_locw;
+  int w_loch;
+  int depth;
 };
 
 
