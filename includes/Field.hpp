@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#define N 4
 using std::vector;
 using std::cout;
 using std::endl;
@@ -15,11 +16,11 @@ int domain_;
 
 public:
   Field();
-  Field(const & Field f);
+  Field(const Field & f);
   int size();
-  vector<int> &operator [](int i);
-  void move(int nr);
-  bool check_solution();
+  const vector<int> &operator [](int i) const;
+  void move(int nr,int par);
+  bool check_solution() const;
   int w_locw;
   int w_loch;
   int depth;

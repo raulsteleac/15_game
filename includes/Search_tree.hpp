@@ -2,19 +2,27 @@
 #include "Field.hpp"
 #include <memory>
 #include <queue>
-#include <pair>
+#include <utility>
+#include <functional>
+class compare{
+public:
+	bool operator()(const std::pair<Field,int> & f1,const std::pair<Field,int> & f2){
+		return f1.second>f2.second;
+	}
+};
 class STree{
-	std::vector<std::pair<move,int>> v;
-	std::priority_queue<std::pair<Field,int>, std::vector<std::pair<Field,int>>, 
-			function<bool(const & std::pair<Field,int> const & std::pair<Field,int>)>> pq;
+
+	std::vector<std::pair<moves,int>> v;
+	std::priority_queue<std::pair<Field,int>, std::vector<std::pair<Field,int>>, compare> pq;
+
 
 	public:
-	STree(const & Field f):pq([](const & std::pair<Field,int> f1,const & std::pair<Field,int> f2){return f1.second<=f2.second;}))
+	STree( Field & f)	
 			{
 				add(f);
 			}
-	void add(const & Field f);
-	int heuristic(const & Field f);
+	void add( Field & f);
+	int heuristic( Field & f);
 	void compute();
 	void a_star();
 };
