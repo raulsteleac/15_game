@@ -6,6 +6,7 @@
 using std::vector;
 using std::cout;
 using std::endl;
+enum moves {n,u,d,l,r};
 class Field{
 
 vector<vector <int> > matr_;
@@ -22,6 +23,8 @@ public:
   int w_locw;
   int w_loch;
   int depth;
+  moves move_;
+  int parent;
 };
 
 

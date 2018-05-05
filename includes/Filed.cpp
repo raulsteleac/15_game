@@ -12,9 +12,10 @@ Field::Field():domain_(N),matr_(N,vector<int>(N)){
   	w_locw=3;
   	w_loch=3;
   	depth=0;
-
+  	move_=n;
+  	parent=-1;
   }
- Field::Field(const & Field f):domain_(N),matr_(N,vector<int>(N)),w_loch(f.w_loch),w_locw(f.w_locw),depth(f.depth){
+ Field::Field(const & Field f):domain_(N),matr_(N,vector<int>(N)),w_loch(f.w_loch),w_locw(f.w_locw),depth(f.depth),move_(f.move_){
 
  	for(int i=0;i<N;i++)
  		for(int j=0;j<N;j++)
@@ -30,14 +31,16 @@ vector<int> & Field::operator [](int i){
   		return matr_[i];
   	}
 }
-void Field::move(int nr)
+void Field::move(int nr,int par)
 {
+	parent=par;
 	if(w_locw-1>0)
 		if(matr_[w_locw-1][w_loch]==nr)
 		{
 			matr_[w_locw-1][w_loch]=0;
 			matr_[w_locw][w_loch]=nr;
 			w_locw--;
+			move_=r;
 			return ;
 		}
 
@@ -47,6 +50,7 @@ void Field::move(int nr)
 			matr_[w_locw+1][w_loch]=0;
 			matr_[w_locw][w_loch]=nr;
 			w_locw++;
+			move_=l;
 			return ;
 		}
 
@@ -56,6 +60,7 @@ void Field::move(int nr)
 			matr_[w_locw][w_loch-1]=0;
 			matr_[w_locw][w_loch]=nr;
 			w_loch--;
+			move_u;
 			return ;
 		}
 
@@ -65,6 +70,7 @@ void Field::move(int nr)
 			matr_[w_locw][w_loch+1]=0;
 			matr_[w_locw][w_loch]=nr;
 			w_loch++;
+			move_=d;
 			return ;
 		}
 

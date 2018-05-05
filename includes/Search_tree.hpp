@@ -4,7 +4,7 @@
 #include <queue>
 #include <pair>
 class STree{
-
+	std::vector<std::pair<move,int>> v;
 	std::priority_queue<std::pair<Field,int>, std::vector<std::pair<Field,int>>, 
 			function<bool(const & std::pair<Field,int> const & std::pair<Field,int>)>> pq;
 
@@ -16,7 +16,7 @@ class STree{
 	void add(const & Field f);
 	int heuristic(const & Field f);
 	void compute();
-
+	void a_star();
 };
 
 
